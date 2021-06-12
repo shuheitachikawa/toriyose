@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Category } from "src/types";
 import { useRouter } from "next/router";
 import styled, { keyframes } from "styled-components";
+import { ContactDialog } from "src/components/contactDialog";
 
 const rotate = keyframes`
   0% {
@@ -40,13 +41,14 @@ export const Layout: VFC<Props> = ({ children, categories }) => {
     <div className="min-h-screen flex flex-col font-main">
       <header className="bg-pitari py-4 px-4">
         <div className="max-w-main mx-auto">
-          <div className="mb-4">
+          <div className="mb-4 flex justify-between items-center">
             <Link href="/">
               <h1 className="cursor-pointer inline-block select-none">
                 <span className="text-2xl font-bold mr-4">TORIYOSE</span>
                 <span className="text-xs">お取り寄せグルメサイト集</span>
               </h1>
             </Link>
+            {/* <ContactDialog /> */}
           </div>
           <div className="flex">
             <div className="mr-4 select-none">

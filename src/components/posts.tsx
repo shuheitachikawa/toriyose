@@ -16,10 +16,10 @@ export const Posts: VFC<Props> = ({posts, pageName}) => {
                 <div key={post.id} className="mb-10">
                   <a href={post.url} target="_blank" rel="noopener">
                     <div className="w-cardPc h-cardPc mb-2 border border-gray-100">
-                    <Image src={`${post.fv.url}?fit=fill&w=600&h=371`} alt={post.name} width={400} height={247} objectFit={"cover"}/>
+                      <Image className="transform hover:scale-110 duration-300" src={`${post.fv.url}?fit=fill&w=600&h=371`} alt={post.name} width={400} height={247} objectFit={"cover"}/>
                     </div>
                   </a>
-                  <p>{post.name}</p>
+                  <p className="font-light">{post.name}</p>
                 </div>
               );
             })}

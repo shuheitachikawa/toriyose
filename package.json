@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@headlessui/react": "^1.2.0",
     "@types/styled-components": "^5.1.10",
     "axios": "^0.21.1",
     "next": "10.2.3",

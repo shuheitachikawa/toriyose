@@ -14,6 +14,7 @@ module.exports = {
     },
     maxWidth: {
       main: "1280px",
+      dialog: "500px",
     },
     colors: {
       gray: colors.coolGray,
@@ -22,6 +23,7 @@ module.exports = {
       pink: colors.fuchsia,
       indigo: colors.indigo,
       white: colors.white,
+      black: colors.black,
       pitari: "#fff4ef",
     },
     fontFamily: {
