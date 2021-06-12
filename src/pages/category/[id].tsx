@@ -7,8 +7,8 @@ import { Posts } from "src/components/posts";
 import { Post, Category } from "src/types";
 
 interface Props {
-  posts: Post[];
   categories: Category[];
+  posts: Post[];
 }
 
 const Home: NextPage<Props> = ({ categories, posts }) => {
@@ -29,7 +29,18 @@ const Home: NextPage<Props> = ({ categories, posts }) => {
   );
 };
 
-export const getStaticProps = async () => {
+// 静的生成のためのパスを指定します
+export const getStaticPaths = async () => {
+  const baseUrl = process.env.MICROCMS_BASE_URL;
+  const { data } = await axiosInstance.get(`${baseUrl}/category`);
+  // console.log(data)
+  const paths = data.contents.map((category: Category) => `/category/${category.key}`);
+  return { paths, fallback: false };
+};
+
+
+export const getStaticProps = async (context: any) => {
+  const category = context.params.id;
   const baseUrl = process.env.MICROCMS_BASE_URL;
   const getPosts = (): Promise<any> => {
     return axiosInstance.get(`${baseUrl}/site`);
@@ -42,7 +53,7 @@ export const getStaticProps = async () => {
     getCategories(),
   ]);
   const categories: Post[] = resCategories.data.contents;
-  const posts: Post[] = resPosts.data.contents;
+  const posts: Post[] = resPosts.data.contents.filter((c:Post) => c.categories.some((d: Category) => d.key === category))
   return {
     props: {
       categories,

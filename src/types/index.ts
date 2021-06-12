@@ -10,6 +10,7 @@ export type Post = {
   publishedAt: string;
   revisedAt: string;
   updatedAt: string;
+  categories: Category[];
 };
 
 type Fv = {

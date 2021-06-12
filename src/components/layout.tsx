@@ -6,6 +6,7 @@ import { Category } from "src/types";
 interface Props {
   children: ReactNode;
   categories: Category[];
+  pageName: string;
 }
 
 export const Layout: VFC<Props> = ({ children, categories }) => {
@@ -18,9 +19,7 @@ export const Layout: VFC<Props> = ({ children, categories }) => {
             <Link href="/">
               <h1 className="cursor-pointer inline-block select-none">
                 <span className="text-2xl font-bold mr-4">TORIYOSE</span>
-                <span className="text-xs">
-                  お取り寄せグルメサイト集
-                </span>
+                <span className="text-xs">お取り寄せグルメサイト集</span>
               </h1>
             </Link>
           </div>
