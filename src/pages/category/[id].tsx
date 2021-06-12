@@ -1,10 +1,10 @@
 import { NextPage } from "next";
 import { HeadComponent } from "src/components/head";
 import { axiosInstance } from "src/lib/api";
-import Image from "next/image";
 import { Layout } from "src/components/layout";
 import { Posts } from "src/components/posts";
 import { Post, Category } from "src/types";
+import { useRouter } from "next/router";
 
 interface Props {
   categories: Category[];
@@ -12,7 +12,8 @@ interface Props {
 }
 
 const Home: NextPage<Props> = ({ categories, posts }) => {
-  const pageName = "新着";
+  const router = useRouter();
+  const pageName = categories.find(c => c.key === router.query.id)?.name || ""
   return (
     <div className="">
       <HeadComponent

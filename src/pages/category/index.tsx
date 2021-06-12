@@ -7,7 +7,6 @@ import { Post, Category } from "src/types";
 
 
 const Categories: NextPage = () => {
-  const pageName = "新着";
   return (
     <div className="">
       <HeadComponent

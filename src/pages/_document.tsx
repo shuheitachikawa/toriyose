@@ -1,7 +1,22 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-const { GA_TRACKING_ID } = require('src/lib/gtag')
+import { ServerStyleSheet } from "styled-components";
+const { GA_TRACKING_ID } = require("src/lib/gtag");
 
-class MyDocument extends Document {
+interface Props {
+  styleTags: any;
+}
+
+class MyDocument extends Document<Props> {
+  // styled-componentsの設定
+  static getInitialProps({ renderPage }: any) {
+    const sheet = new ServerStyleSheet();
+    const page = renderPage(
+      (App: any) => (props: Props) => sheet.collectStyles(<App {...props} />)
+    );
+    const styleTags = sheet.getStyleElement();
+    return { ...page, styleTags };
+  }
+
   render() {
     return (
       <Html lang="ja">
@@ -23,6 +38,7 @@ class MyDocument extends Document {
           `,
             }}
           />
+          {this.props.styleTags}
         </Head>
         <body className="bg-main">
           <Main />
