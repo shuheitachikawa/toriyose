@@ -19,7 +19,7 @@ const Home: NextPage<Props> = ({ categories, posts }) => {
         description="美味しそうなお取り寄せグルメサイト集"
         keyword="お取り寄せ グルメ"
         image="/cat.jpg"
-        url="https://bubekiti.com"
+        url="https://toriyose.me"
       />
       <Layout categories={categories}>
         <div className="max-w-main mx-auto pt-6">
