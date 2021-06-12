@@ -1,17 +1,29 @@
 export type Post = {
   id: string;
-  icon: string;
-  title: string;
+  url: string;
+  name: string;
+  desc: string;
+  fv: Fv;
   description: string;
-  category: string;
+  categoriel: Category[];
   content: string;
   publishedAt: string;
+  revisedAt: string;
+  updatedAt: string;
 };
 
+type Fv = {
+  height: number;
+  width: number;
+  url: string;
+}
+
 export type Category = {
+  id: string;
   name: string;
-  href: string;
-  text: string;
-  color: string;
-  bg: string;
+  icon: string;
+  key: string;
+  publishedAt: string;
+  revisedAt: string;
+  updatedAt: string;
 };
