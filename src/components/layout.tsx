@@ -38,7 +38,7 @@ export const Layout: VFC<Props> = ({ children, categories }) => {
   const pageName =
     categories.find((c) => c.key === router.query.id)?.name || "";
   return (
-    <div className="min-h-screen flex flex-col font-main">
+    <div className="min-h-screen relative pb-40 flex flex-col font-main">
       <header className="bg-pitari py-4 px-4">
         <div className="max-w-main mx-auto">
           <div className="mb-4 flex justify-between items-center">
@@ -85,6 +85,15 @@ export const Layout: VFC<Props> = ({ children, categories }) => {
         </div>
       </header>
       <main className="px-4">{children}</main>
+      <footer className="absolute bottom-0 w-full">
+        <div className="max-w-main mx-auto py-10 text-gray-500 font-light text-sm">
+          <ul className="flex justify-center">
+            <li className="mr-5"><Link href="/">ホーム</Link></li>
+            <li className="mr-5"><Link href="/privacy-policy">プライバシーポリシー</Link></li>
+            <li><a href="https://bubekiti.com/bubekiti" rel="noopener">運営者</a></li>
+          </ul>
+        </div>
+      </footer>
     </div>
   );
 };

@@ -33,3 +33,11 @@ export type ContactInfo = {
   url: string;
   message: string;
 }
+
+export type PrivacyPolicy = {
+  id: string;
+  content: string;
+  publishedAt: string;
+  revisedAt: string;
+  updatedAt: string;
+}

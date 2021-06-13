@@ -32,10 +32,10 @@ const Home: NextPage<Props> = ({ categories, posts }) => {
 export const getStaticProps = async () => {
   const baseUrl = process.env.micro_cms_base_url;
   const getPosts = (): Promise<any> => {
-    return axiosInstance.get(`${baseUrl}/site`);
+    return axiosInstance.get(`${baseUrl}/site?limit=1000`);
   };
   const getCategories = (): Promise<any> => {
-    return axiosInstance.get(`${baseUrl}/category`);
+    return axiosInstance.get(`${baseUrl}/category?limit=1000`);
   };
   const [resPosts, resCategories] = await Promise.all([
     getPosts(),

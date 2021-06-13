@@ -38,9 +38,10 @@ class MyDocument extends Document<Props> {
           `,
             }}
           />
+          <meta charSet="utf-8" />
           {this.props.styleTags}
         </Head>
-        <body className="bg-main">
+        <body>
           <Main />
           <NextScript />
         </body>
