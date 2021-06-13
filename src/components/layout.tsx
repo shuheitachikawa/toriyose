@@ -39,12 +39,12 @@ export const Layout: VFC<Props> = ({ children, categories }) => {
     categories.find((c) => c.key === router.query.id)?.name || "";
   return (
     <div className="min-h-screen relative pb-40 flex flex-col font-main">
-      <header className="bg-pitari pt-4 px-4">
+      <header className="bg-pitari pt-4 px-2 sm:px-4">
         <div className="max-w-main mx-auto">
           <div className="mb-4 flex justify-between items-center">
             <Link href="/">
               <h1 className="cursor-pointer inline-block select-none">
-                <span className="text-2xl font-bold mr-4">TORIYOSE</span>
+                <span className="text-2xl font-bold mr-4 block sm:inline-block">TORIYOSE</span>
                 <span className="text-xs">お取り寄せグルメサイト集</span>
               </h1>
             </Link>
@@ -84,7 +84,7 @@ export const Layout: VFC<Props> = ({ children, categories }) => {
           </div>
         </div>
       </header>
-      <main className="px-4">{children}</main>
+      <main className="px-2 sm:px-4">{children}</main>
       <footer className="absolute bottom-0 w-full">
         <div className="max-w-main mx-auto py-10 text-gray-500 font-light text-sm">
           <ul className="flex justify-center">

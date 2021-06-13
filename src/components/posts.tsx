@@ -15,7 +15,7 @@ export const Posts: VFC<Props> = ({posts, pageName}) => {
               return (
                 <div key={post.id} className="mb-10">
                   <a href={post.url} target="_blank" rel="noopener">
-                    <div className="sm:w-cardPc h-cardPc w-cardSp mb-2 border border-gray-100">
+                    <div className="max-w-cardPc w-full max-h-cardPc mb-2 border border-gray-100">
                       <Image className="transform hover:scale-110 duration-300" src={`${post.fv.url}?fit=fill&w=600&h=371`} alt={post.name} width={400} height={247} objectFit={"cover"}/>
                     </div>
                   </a>
