@@ -15,3 +15,11 @@ export const axiosWriteInstance = axios.create({
     "X-WRITE-API-KEY": process.env.micro_cms_x_write_api_key,
   },
 });
+
+export const wait1sec = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("OK")
+    }, 1000)
+  })
+}
