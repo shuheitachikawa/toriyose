@@ -39,7 +39,7 @@ export const Layout: VFC<Props> = ({ children, categories }) => {
     categories.find((c) => c.key === router.query.id)?.name || "";
   return (
     <div className="min-h-screen relative pb-40 flex flex-col font-main">
-      <header className="bg-pitari py-4 px-4">
+      <header className="bg-pitari pt-4 px-4">
         <div className="max-w-main mx-auto">
           <div className="mb-4 flex justify-between items-center">
             <Link href="/">
@@ -50,7 +50,7 @@ export const Layout: VFC<Props> = ({ children, categories }) => {
             </Link>
             <ContactDialog />
           </div>
-          <div className="flex">
+          <div className="flex overflow-x-scroll p-1 pb-5">
             <div className="mr-4 select-none">
               <Link href="/">
                 <div className="cursor-pointer">

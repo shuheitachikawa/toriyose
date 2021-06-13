@@ -7,7 +7,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     screens: {
-      sm: "480px",
+      sm: "420px",
       md: "768px",
       lg: "976px",
       xl: "1250px",
@@ -53,9 +53,11 @@ module.exports = {
       },
       width: {
         cardPc: "400px",
+        cardSp: "95vw",
       },
       height: {
         cardPc: "247px",
+        cardSp: "100%",
       },
     },
   },
