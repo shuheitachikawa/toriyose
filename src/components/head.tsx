@@ -34,8 +34,8 @@ export const HeadComponent: VFC<Props> = ({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
       <link rel="canonical" href={url} />
-      <link rel="shortcut icon" href={"https://bubekiti.com/cat.jpg"} />
-      <link rel="apple-touch-icon" href={"https://bubekiti.com/cat.jpg"} />
+      <link rel="shortcut icon" href={"https://toriyose.me/image.png"} />
+      <link rel="apple-touch-icon" href={"https://toriyose.me/image.png"} />
     </Head>
   );
 };
