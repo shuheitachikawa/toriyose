@@ -1,6 +1,9 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import type { VFC } from "react";
+import { Formik, FormikProps } from "formik";
+import { ContactInfo } from "src/types"
+import { axiosWriteInstance } from "src/lib/api";
 
 export const ContactDialog: VFC = () => {
   let [isOpen, setIsOpen] = useState(false)
@@ -12,6 +15,31 @@ export const ContactDialog: VFC = () => {
   function openModal() {
     setIsOpen(true)
   }
+
+  
+  interface Error {
+    urlRequired?: string;
+  }
+  const validate = (values: ContactInfo) => {
+    const error: Error = {};
+    if (!values.url) {
+      error.urlRequired = "入力してください";
+    }
+    return error;
+  }
+
+  const handleSendForm = async (form: ContactInfo, { setSubmitting, setErrors, setStatus, resetForm }: any) => {
+    try {
+      const baseUrl = process.env.micro_cms_base_url;
+      await axiosWriteInstance.post(`${baseUrl}/contact`, form);
+      resetForm();
+      setStatus({ success: true });
+    } catch (error) {
+      console.log(error.message);
+      setStatus({ success: false });
+    }
+    setSubmitting(false);
+  };
 
   return (
     <>
@@ -71,28 +99,35 @@ export const ContactDialog: VFC = () => {
                 </div>
 
                 <div className="mt-4">
-                  <form className="px-4 pt-6 pb-8 mb-4">
-                    <div className="mb-4">
-                      <label className="block text-gray-700 text-sm font-bold mb-2" >
-                        掲載したいURL
-                      </label>
-                      <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="url" type="text" />
-                    </div>
-                    <div className="mb-6">
-                      <label className="block text-gray-700 text-sm font-bold mb-2" >
-                        メッセージなど (任意)
-                      </label>
-                      <textarea className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="message" rows={5}></textarea>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <button
-                        type="button"
-                        className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                      >
-                        送信
-                      </button>
-                    </div>
-                  </form>
+                  <Formik onSubmit={handleSendForm} initialValues={{ url: "", message: "" }} validate={validate}>
+                  {(props: FormikProps<ContactInfo>) => {
+                    const { handleSubmit, values, errors, handleChange } = props;
+                    return (
+                      <form className="px-4 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+                        <div className="mb-4">
+                          <label className="block text-gray-700 text-sm font-bold mb-2" >
+                            掲載したいURL
+                          </label>
+                          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="url" type="text" value={values.url} onChange={handleChange} />
+                          <p className="text-xs text-red-400 mt-1">{(errors as Error).urlRequired}</p>
+                        </div>
+                        <div className="mb-6">
+                          <label className="block text-gray-700 text-sm font-bold mb-2" >
+                            メッセージなど (任意)
+                          </label>
+                          <textarea className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="message" rows={5} value={values.message} onChange={handleChange}> </textarea>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <button
+                            type="submit"
+                            className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                          >
+                            送信
+                          </button>
+                        </div>
+                      </form>
+                    )}}
+                  </Formik>
                 </div>
               </div>
             </Transition.Child>

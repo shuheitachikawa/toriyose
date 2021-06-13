@@ -48,7 +48,7 @@ export const Layout: VFC<Props> = ({ children, categories }) => {
                 <span className="text-xs">お取り寄せグルメサイト集</span>
               </h1>
             </Link>
-            {/* <ContactDialog /> */}
+            <ContactDialog />
           </div>
           <div className="flex">
             <div className="mr-4 select-none">

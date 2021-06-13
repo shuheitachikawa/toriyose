@@ -32,7 +32,7 @@ const Home: NextPage<Props> = ({ categories, posts }) => {
 
 // 静的生成のためのパスを指定します
 export const getStaticPaths = async () => {
-  const baseUrl = process.env.MICROCMS_BASE_URL;
+  const baseUrl = process.env.micro_cms_base_url;
   const { data } = await axiosInstance.get(`${baseUrl}/category`);
   // console.log(data)
   const paths = data.contents.map((category: Category) => `/category/${category.key}`);
@@ -42,7 +42,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context: any) => {
   const category = context.params.id;
-  const baseUrl = process.env.MICROCMS_BASE_URL;
+  const baseUrl = process.env.micro_cms_base_url;
   const getPosts = (): Promise<any> => {
     return axiosInstance.get(`${baseUrl}/site`);
   };

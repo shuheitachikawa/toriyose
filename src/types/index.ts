@@ -28,3 +28,8 @@ export type Category = {
   revisedAt: string;
   updatedAt: string;
 };
+
+export type ContactInfo = {
+  url: string;
+  message: string;
+}

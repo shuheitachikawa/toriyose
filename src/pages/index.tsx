@@ -30,7 +30,7 @@ const Home: NextPage<Props> = ({ categories, posts }) => {
 };
 
 export const getStaticProps = async () => {
-  const baseUrl = process.env.MICROCMS_BASE_URL;
+  const baseUrl = process.env.micro_cms_base_url;
   const getPosts = (): Promise<any> => {
     return axiosInstance.get(`${baseUrl}/site`);
   };
