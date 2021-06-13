@@ -66,7 +66,7 @@ export const Layout: VFC<Props> = ({ children, categories }) => {
             <div className="cursor-pointer">
               <div className="relative z-10">
                 {router.route === "/" && <Circle />}
-                <div className="bg-white hover:bg-gray-50 duration-300 h-14 w-14 sm:h-16 sm:w-16 text-4xl flex justify-center items-center rounded-4xl mb-2">
+                <div className="bg-white duration-300 h-14 w-14 sm:h-16 sm:w-16 text-4xl flex justify-center items-center rounded-4xl mb-2">
                   ⭐️
                 </div>
               </div>
@@ -81,7 +81,7 @@ export const Layout: VFC<Props> = ({ children, categories }) => {
                 <div className="cursor-pointer">
                   <div className="relative z-10">
                     {c.name === pageName && <Circle className="" />}
-                    <div className="bg-white hover:bg-gray-50 duration-300 h-14 w-14 sm:h-16 sm:w-16 text-4xl flex justify-center items-center rounded-4xl mb-2">
+                    <div className="bg-white duration-300 h-14 w-14 sm:h-16 sm:w-16 text-4xl flex justify-center items-center rounded-4xl mb-2">
                       {c.icon}
                     </div>
                   </div>
