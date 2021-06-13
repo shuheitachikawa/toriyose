@@ -13,7 +13,7 @@ const Categories: NextPage = () => {
         title="TORIYOSE"
         description="美味しそうなお取り寄せグルメサイト集"
         keyword="お取り寄せ グルメ"
-        image="/cat.jpg"
+        image="/image.png"
         url="https://toriyose.me"
       />
       <Layout categories={[]} pageName="">
