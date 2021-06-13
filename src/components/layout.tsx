@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Category } from "src/types";
 import { useRouter } from "next/router";
 import styled, { keyframes } from "styled-components";
+import media from 'styled-media-query';
 import { ContactDialog } from "src/components/contactDialog";
 
 const rotate = keyframes`
@@ -14,10 +15,15 @@ const rotate = keyframes`
   }
 `;
 
+const mediaMobile = (media as any).lessThan('420px');
 const Circle = styled.div`
   position: absolute;
-  height: 68px;
-  width: 68px;
+  height: 69px;
+  width: 69px;
+  ${mediaMobile`
+  height: 62px;
+  width: 62px;
+  `}
   border-radius: 50%;
   top: 50%;
   left: 50%;
@@ -41,22 +47,22 @@ export const Layout: VFC<Props> = ({ children, categories }) => {
     <div className="min-h-screen relative pb-40 flex flex-col font-main">
       <header className="bg-pitari pt-4 px-2 sm:px-4">
         <div className="max-w-main mx-auto">
-          <div className="mb-4 flex justify-between items-center">
+          <div className="mb-2 sm:mb-4 flex justify-between items-center">
             <Link href="/">
-              <h1 className="cursor-pointer inline-block select-none">
+              <h1 className="pl-1 sm:pl-0 cursor-pointer inline-block select-none">
                 <span className="text-2xl font-bold mr-4 block sm:inline-block">TORIYOSE</span>
                 <span className="text-xs">お取り寄せグルメサイト集</span>
               </h1>
             </Link>
             <ContactDialog />
           </div>
-          <div className="flex overflow-x-scroll p-1 pb-5">
+          <div className="flex overflow-x-scroll p-1 pb-3 sm:pb-5">
             <div className="mr-4 select-none">
               <Link href="/">
                 <div className="cursor-pointer">
                   <div className="relative z-10">
                     {router.route === "/" && <Circle />}
-                    <div className="bg-white hover:bg-gray-50 duration-300  h-16 w-16 text-4xl flex justify-center items-center rounded-4xl mb-2">
+                    <div className="bg-white hover:bg-gray-50 duration-300 h-14 w-14 sm:h-16 sm:w-16 text-4xl flex justify-center items-center rounded-4xl mb-2">
                       ⭐️
                     </div>
                   </div>
@@ -71,7 +77,7 @@ export const Layout: VFC<Props> = ({ children, categories }) => {
                     <div className="cursor-pointer">
                       <div className="relative z-10">
                         {c.name === pageName && <Circle className="" />}
-                        <div className="bg-white hover:bg-gray-50 duration-300 h-16 w-16 text-4xl flex justify-center items-center rounded-4xl mb-2">
+                        <div className="bg-white hover:bg-gray-50 duration-300 h-14 w-14 sm:h-16 sm:w-16 text-4xl flex justify-center items-center rounded-4xl mb-2">
                           {c.icon}
                         </div>
                       </div>
