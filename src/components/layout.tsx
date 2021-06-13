@@ -47,7 +47,7 @@ export const Layout: VFC<Props> = ({ children, categories }) => {
     <div className="min-h-screen relative pb-40 flex flex-col font-main">
       <header className="bg-pitari pt-4 px-2 sm:px-4">
         <div className="max-w-main mx-auto">
-          <div className="mb-2 sm:mb-4 flex justify-between items-center">
+          <div className="flex justify-between items-center">
             <Link href="/">
               <h1 className="pl-1 sm:pl-0 cursor-pointer inline-block select-none">
                 <span className="text-2xl font-bold mr-4 block sm:inline-block">TORIYOSE</span>
@@ -56,40 +56,40 @@ export const Layout: VFC<Props> = ({ children, categories }) => {
             </Link>
             <ContactDialog />
           </div>
-          <div className="flex overflow-x-scroll p-1 pb-3 sm:pb-5">
-            <div className="mr-4 select-none">
-              <Link href="/">
+        </div>
+      </header>
+      <div className="bg-pitari sticky z-10 top-0 flex overflow-x-scroll pt-3 sm:pt-4 p-1 pb-3 sm:pb-5 pl-4 pr-4">
+        <div className="mr-4 select-none">
+          <Link href="/">
+            <div className="cursor-pointer">
+              <div className="relative z-10">
+                {router.route === "/" && <Circle />}
+                <div className="bg-white hover:bg-gray-50 duration-300 h-14 w-14 sm:h-16 sm:w-16 text-4xl flex justify-center items-center rounded-4xl mb-2">
+                  ⭐️
+                </div>
+              </div>
+              <div className="text-xs text-center">新着</div>
+            </div>
+          </Link>
+        </div>
+        {categories.map((c) => {
+          return (
+            <div key={c.key} className="mr-4 select-none">
+              <Link href={`/category/${c.key}`}>
                 <div className="cursor-pointer">
                   <div className="relative z-10">
-                    {router.route === "/" && <Circle />}
+                    {c.name === pageName && <Circle className="" />}
                     <div className="bg-white hover:bg-gray-50 duration-300 h-14 w-14 sm:h-16 sm:w-16 text-4xl flex justify-center items-center rounded-4xl mb-2">
-                      ⭐️
+                      {c.icon}
                     </div>
                   </div>
-                  <div className="text-xs text-center">新着</div>
+                  <div className="text-xs text-center">{c.name}</div>
                 </div>
               </Link>
             </div>
-            {categories.map((c) => {
-              return (
-                <div key={c.key} className="mr-4 select-none">
-                  <Link href={`/category/${c.key}`}>
-                    <div className="cursor-pointer">
-                      <div className="relative z-10">
-                        {c.name === pageName && <Circle className="" />}
-                        <div className="bg-white hover:bg-gray-50 duration-300 h-14 w-14 sm:h-16 sm:w-16 text-4xl flex justify-center items-center rounded-4xl mb-2">
-                          {c.icon}
-                        </div>
-                      </div>
-                      <div className="text-xs text-center">{c.name}</div>
-                    </div>
-                  </Link>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </header>
+          );
+        })}
+      </div>
       <main className="px-2 sm:px-4">{children}</main>
       <footer className="absolute bottom-0 w-full">
         <div className="max-w-main mx-auto py-10 text-gray-500 font-light text-sm">
