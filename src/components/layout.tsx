@@ -58,7 +58,8 @@ export const Layout: VFC<Props> = ({ children, categories }) => {
           </div>
         </div>
       </header>
-      <div className="bg-pitari sticky z-10 top-0 flex overflow-x-scroll pt-3 sm:pt-4 p-1 pb-3 sm:pb-5 pl-4 pr-4">
+      {/* <div className="bg-pitari sticky z-10 top-0 flex overflow-x-scroll pt-3 sm:pt-4 pb-3 sm:pb-5 pl-4 pr-4"> */}
+      <div className="bg-pitari flex overflow-x-scroll pt-3 sm:pt-4 pb-3 sm:pb-5 pl-4 pr-4">
         <div className="mr-4 select-none">
           <Link href="/">
             <div className="cursor-pointer">
