@@ -42,6 +42,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context: any) => {
   const category = context.params.id;
+  console.log(context)
   const baseUrl = process.env.micro_cms_base_url;
   const getPosts = (): Promise<any> => {
     return axiosInstance.get(`${baseUrl}/site?limit=1000`);
