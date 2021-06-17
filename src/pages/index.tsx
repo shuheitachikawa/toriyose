@@ -29,7 +29,7 @@ const Home = ({
 export const getStaticProps: GetStaticProps = async () => {
   const baseUrl = process.env.micro_cms_base_url;
   const getPosts = (): Promise<any> => {
-    return axiosInstance.get(`${baseUrl}/site?limit=1000`);
+    return axiosInstance.get(`${baseUrl}/site?limit=3`);
   };
   const getCategories = (): Promise<any> => {
     return axiosInstance.get(`${baseUrl}/category?limit=1000`);
@@ -43,12 +43,17 @@ export const getStaticProps: GetStaticProps = async () => {
 
   // スクレイピング開始
   const puppeteer = require("puppeteer");
+  const chromium = require("chrome-aws-lambda");
   for (let i = 0; i < posts.length; i++) {
     try {
-      const browser = await puppeteer.launch({
-        headless: true, // 動作確認するためheadlessモードにしない
-        slowMo: 500, // 動作確認しやすいようにpuppeteerの操作を遅延させる
-      });
+      // const browser = await puppeteer.launch();
+      const browser = await chromium.puppeteer.launch({
+        args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath,
+        headless: true,
+        ignoreHTTPSErrors: true,
+      })
       const page = await browser.newPage();
       await page.goto(posts[i].url);
       const name = await page.evaluate(() => document.title);
