@@ -5,6 +5,7 @@ const Categories: NextPage = () => {
   return (
     <div className="">
       <Layout categories={[]} pageName="">
+        <div className=""></div>
       </Layout>
     </div>
   );
