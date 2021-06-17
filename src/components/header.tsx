@@ -10,7 +10,7 @@ export const Header: VFC = () => {
           <Link href="/">
             <h1 className="pl-1 sm:pl-0 cursor-pointer inline-block select-none">
               <span className="text-2xl font-bold mr-4 block sm:inline-block">TORIYOSE</span>
-              <span className="text-xs">お取り寄せグルメサイト集</span>
+              <span className="text-xs">お取り寄せグルメサイト集aaa</span>
             </h1>
           </Link>
           <ContactDialog />
