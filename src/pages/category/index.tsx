@@ -11,12 +11,18 @@ const Categories: NextPage = () => {
   );
 };
 
-export async function getStaticProps(context: any) {
+export async function getStaticProps() {
+  const data = null
+  if (!data) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
   return {
-    redirect: {
-      destination: '/',
-      permanent: false,
-    },
+    props: { data }, 
   }
 }
 
