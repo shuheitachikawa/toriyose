@@ -40,20 +40,26 @@ export const getStaticProps: GetStaticProps = async () => {
   ]);
   const categories: Post[] = resCategories.data.contents;
   const posts: Post[] = resPosts.data.contents;
-  const puppeteer = require('puppeteer')
-  posts.forEach(async (p: Post) => {
+
+  // スクレイピング開始
+  const puppeteer = require("puppeteer");
+  for (let i = 0; i < posts.length; i++) {
     try {
-      const browser = await puppeteer.launch()
-      const page = await browser.newPage()
-      await page.goto(p.url)
-      const name = await page.evaluate(() => document.title)
-      p.name = name
-      console.log(p.name)
+      const browser = await puppeteer.launch({
+        headless: true, // 動作確認するためheadlessモードにしない
+        slowMo: 500, // 動作確認しやすいようにpuppeteerの操作を遅延させる
+      });
+      const page = await browser.newPage();
+      await page.goto(posts[i].url);
+      const name = await page.evaluate(() => document.title);
+      posts[i].name = name;
+      console.log(posts[i].name);
       await browser.close();
-    } catch(e) {
-      console.error(e)
+    } catch (e) {
+      console.error(e);
     }
-  })
+  }
+  // スクレイピングここまで
   return {
     props: {
       categories,
