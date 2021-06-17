@@ -41,29 +41,29 @@ export const getStaticProps: GetStaticProps = async () => {
   const categories: Post[] = resCategories.data.contents;
   const posts: Post[] = resPosts.data.contents;
 
-  // スクレイピング開始
-  const puppeteer = require("puppeteer");
-  const chromium = require("chrome-aws-lambda");
-  for (let i = 0; i < posts.length; i++) {
-    try {
-      // const browser = await puppeteer.launch();
-      const browser = await chromium.puppeteer.launch({
-        args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
-        defaultViewport: chromium.defaultViewport,
-        executablePath: await chromium.executablePath,
-        headless: true,
-        ignoreHTTPSErrors: true,
-      })
-      const page = await browser.newPage();
-      await page.goto(posts[i].url);
-      const name = await page.evaluate(() => document.title);
-      posts[i].name = name;
-      console.log(posts[i].name);
-      await browser.close();
-    } catch (e) {
-      console.error(e);
-    }
-  }
+  // スクレイピング開始▶動いたけど禁止されているよう。
+  // const puppeteer = require("puppeteer");
+  // const chromium = require("chrome-aws-lambda");
+  // for (let i = 0; i < posts.length; i++) {
+  //   try {
+  //     // const browser = await puppeteer.launch();
+  //     const browser = await chromium.puppeteer.launch({
+  //       args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
+  //       defaultViewport: chromium.defaultViewport,
+  //       executablePath: await chromium.executablePath,
+  //       headless: true,
+  //       ignoreHTTPSErrors: true,
+  //     })
+  //     const page = await browser.newPage();
+  //     await page.goto(posts[i].url);
+  //     const name = await page.evaluate(() => document.title);
+  //     posts[i].name = name;
+  //     console.log(posts[i].name);
+  //     await browser.close();
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // }
   // スクレイピングここまで
   return {
     props: {
