@@ -11,19 +11,19 @@ const Categories: NextPage = () => {
   );
 };
 
-export async function getStaticProps() {
-  const data = null
-  if (!data) {
-    return {
-      redirect: {
-        destination: '/',
-        permanent: false,
-      },
-    }
-  }
-  return {
-    props: { data }, 
-  }
-}
+// export async function getStaticProps() {
+//   const data = null
+//   if (!data) {
+//     return {
+//       redirect: {
+//         destination: '/',
+//         permanent: false,
+//       },
+//     }
+//   }
+//   return {
+//     props: { data }, 
+//   }
+// }
 
 export default Categories;
