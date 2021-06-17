@@ -11,18 +11,13 @@ const Categories: NextPage = () => {
   );
 };
 
+// ↓generate時にredirectはサポートされていないため、next.configに書く。
 // export async function getStaticProps() {
-//   const data = null
-//   if (!data) {
-//     return {
-//       redirect: {
-//         destination: '/',
-//         permanent: false,
-//       },
-//     }
-//   }
 //   return {
-//     props: { data }, 
+//     redirect: {
+//       destination: '/',
+//       permanent: false,
+//     },
 //   }
 // }
 
