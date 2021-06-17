@@ -40,6 +40,20 @@ export const getStaticProps: GetStaticProps = async () => {
   ]);
   const categories: Post[] = resCategories.data.contents;
   const posts: Post[] = resPosts.data.contents;
+  const puppeteer = require('puppeteer')
+  posts.forEach(async (p: Post) => {
+    try {
+      const browser = await puppeteer.launch()
+      const page = await browser.newPage()
+      await page.goto(p.url)
+      const name = await page.evaluate(() => document.title)
+      p.name = name
+      console.log(p.name)
+      await browser.close();
+    } catch(e) {
+      console.error(e)
+    }
+  })
   return {
     props: {
       categories,
