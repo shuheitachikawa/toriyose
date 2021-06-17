@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import { NextPage, GetStaticProps, InferGetStaticPropsType } from "next";
 import { HeadComponent } from "src/components/head";
 import { axiosInstance } from "src/lib/api";
 import { Layout } from "src/components/layout";
@@ -6,14 +6,10 @@ import { Posts } from "src/components/posts";
 import { Post, Category } from "src/types";
 import { useRouter } from "next/router";
 
-interface Props {
-  categories: Category[];
-  posts: Post[];
-}
 
-const Home: NextPage<Props> = ({ categories, posts }) => {
+const Home = ({ categories, posts }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter();
-  const pageName = categories.find(c => c.key === router.query.id)?.name || ""
+  const pageName = categories.find((c: Category) => c.key === router.query.id)?.name || ""
   return (
     <div className="">
       <HeadComponent
@@ -40,8 +36,8 @@ export const getStaticPaths = async () => {
 };
 
 
-export const getStaticProps = async (context: any) => {
-  const category = context.params.id;
+export const getStaticProps: GetStaticProps = async (context) => {
+  const category = context.params?.id;
   console.log(context)
   const baseUrl = process.env.micro_cms_base_url;
   const getPosts = (): Promise<any> => {
@@ -54,13 +50,14 @@ export const getStaticProps = async (context: any) => {
     getPosts(),
     getCategories(),
   ]);
-  const categories: Post[] = resCategories.data.contents;
+  const categories: Category[] = resCategories.data.contents;
   const posts: Post[] = resPosts.data.contents.filter((c:Post) => c.categories.some((d: Category) => d.key === category))
   return {
     props: {
       categories,
       posts,
     },
+    revalidate: 10,
   };
 };
 

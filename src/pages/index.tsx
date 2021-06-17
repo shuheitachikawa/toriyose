@@ -1,16 +1,14 @@
-import { NextPage } from "next";
+import { NextPage, GetStaticProps, InferGetStaticPropsType } from "next";
 import { HeadComponent } from "src/components/head";
 import { axiosInstance } from "src/lib/api";
 import { Layout } from "src/components/layout";
 import { Posts } from "src/components/posts";
 import { Post, Category } from "src/types";
 
-interface Props {
-  posts: Post[];
-  categories: Category[];
-}
-
-const Home: NextPage<Props> = ({ categories, posts }) => {
+const Home = ({
+  categories,
+  posts,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   const pageName = "新着";
   return (
     <div className="">
@@ -28,7 +26,7 @@ const Home: NextPage<Props> = ({ categories, posts }) => {
   );
 };
 
-export const getStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const baseUrl = process.env.micro_cms_base_url;
   const getPosts = (): Promise<any> => {
     return axiosInstance.get(`${baseUrl}/site?limit=1000`);
