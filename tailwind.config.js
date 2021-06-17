@@ -59,6 +59,9 @@ module.exports = {
         cardPc: "247px",
         cardSp: "100%",
       },
+      maxWidth: {
+        cardPc: "400px",
+      }
     },
   },
   variants: {
