@@ -36,6 +36,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 
+
 export const getStaticProps: GetStaticProps = async (context) => {
   const category = context.params?.id;
   console.log(context)
