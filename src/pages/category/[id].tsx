@@ -42,7 +42,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   console.log(context)
   const baseUrl = process.env.micro_cms_base_url;
   const getPosts = (): Promise<any> => {
-    return axiosInstance.get(`${baseUrl}/site?limit=1000`);
+    return axiosInstance.get(`${baseUrl}/site?limit=100`);
   };
   const getCategories = (): Promise<any> => {
     return axiosInstance.get(`${baseUrl}/category?limit=1000`);
