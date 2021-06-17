@@ -32,7 +32,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const { data } = await axiosInstance.get(`${baseUrl}/category`);
   // console.log(data)
   const paths = data.contents.map((category: Category) => `/category/${category.key}`);
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 };
 
 
@@ -58,7 +58,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       categories,
       posts,
     },
-    revalidate: 10,
+    // revalidate: 10,
   };
 };
 
